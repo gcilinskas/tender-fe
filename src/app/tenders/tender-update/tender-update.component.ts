@@ -11,7 +11,6 @@ import {ToastrService} from 'ngx-toastr';
 
 export class TenderUpdateComponent {
     @Input() tender: TenderInterface;
-    @Input() tenders: TenderInterface[];
     @ViewChild('frame', {static: true}) private frame;
     validatingForm: FormGroup;
     @Output() tenderUpdate = new EventEmitter<TenderInterface[]>();
@@ -20,7 +19,6 @@ export class TenderUpdateComponent {
         private tenderService: TenderService,
         private toastrService: ToastrService
     ) {
-        this.tender = this.tenderService.newObject();
     }
 
     ngOnInit(): void {
@@ -57,27 +55,12 @@ export class TenderUpdateComponent {
 
     submit() {
         this.setFormValues();
-        if (this.tender.id) {
-            this.tenderService.update(this.tender).subscribe((data) => {
-                this.toastrService.success('Tender updated successfully!');
-                this.frame.hide();
-                this.tender.updatedAtTimestamp = data.data.updatedAtTimestamp;
-            }, err => {
-                this.toastrService.error('Something went wrong');
-            });
-        } else {
-            this.tenderService.create(this.tender).subscribe((data) => {
-                this.toastrService.success('Tender created successfully!');
-                this.frame.hide();
-                this.tender.id = data.data.id;
-                this.tender.createdAtTimestamp = data.data.createdAtTimestamp;
-                this.tender.updatedAtTimestamp = data.data.updatedAtTimestamp;
-                this.tenders = [this.tender].concat(this.tenders);
-                this.tenderUpdate.emit(this.tenders);
-                this.tender = this.tenderService.newObject();
-            }, err => {
-                this.toastrService.error('Something went wrong');
-            });
-        }
+        this.tenderService.update(this.tender).subscribe((data) => {
+            this.toastrService.success('Tender updated successfully!');
+            this.tender.updatedAtTimestamp = data.data.updatedAtTimestamp;
+            this.frame.hide();
+        }, err => {
+            this.toastrService.error('Something went wrong');
+        });
     }
 }

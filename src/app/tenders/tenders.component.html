@@ -1,6 +1,6 @@
 <div style="height: 20vh">
     <a routerLink="/"  mdbBtn color="black" outline="true" mdbWavesEffect class="wow fadeInDown" data-wow-delay="0.4s">Back</a>
-    <app-tender-create (tenderUpdate)="getTenderUpdate($event)"></app-tender-create>
+    <app-tender-create (tenderCreate)="getCreatedTender($event)"></app-tender-create>
     <div class="flex-center flex-column">
         <h1 class="animated fadeIn mb-4">Tenders List</h1>
     </div>

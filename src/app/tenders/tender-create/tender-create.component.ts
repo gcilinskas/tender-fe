@@ -13,7 +13,7 @@ export class TenderCreateComponent {
     tender: TenderInterface;
     @ViewChild('frame', {static: true}) private frame;
     validatingForm: FormGroup;
-    @Output() tenderUpdate = new EventEmitter<TenderInterface>();
+    @Output() tenderCreate = new EventEmitter<TenderInterface>();
 
     constructor(
         private tenderService: TenderService,
@@ -40,7 +40,7 @@ export class TenderCreateComponent {
         this.tenderService.create({title: this.formTitle.value, description: this.formDescription.value}).subscribe((data) => {
             this.toastrService.success('Tender created successfully!');
             this.tender = data.data;
-            this.tenderUpdate.emit(this.tender);
+            this.tenderCreate.emit(this.tender);
             this.frame.hide();
             this.validatingForm.reset();
         }, err => {

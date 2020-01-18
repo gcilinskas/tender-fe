@@ -51,7 +51,12 @@ export class TendersComponent implements OnInit {
         }
     }
 
-    getTenderUpdate(tender) {
+    getCreatedTender(tender) {
+        this.tenders = [tender].concat(this.tenders);
+    }
+
+    getUpdatedTender(tender) {
+        this.tenders = this.tenders.filter(current => current.id !== tender.id);
         this.tenders = [tender].concat(this.tenders);
     }
 }
