@@ -1,0 +1,44 @@
+<button  type="button" mdbBtn  rounded="true" data-toggle="modal" data-target="#tenderForm"
+        (click)="frame.show()" mdbWavesEffect>{{action}}</button>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">{{action}} Tender</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <input value="{{tender.title}}" type="text" id="form-title"
+                           [formControl]="formTitle" class="form-control" mdbInput mdbValidate>
+                    <label for="form-title">Title</label>
+                    <mdb-error
+                            *ngIf="formTitle.invalid && (formTitle.dirty || formTitle.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success
+                            *ngIf="formTitle.valid && (formTitle.dirty || formTitle.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-4">
+                    <textarea id="form-description" [formControl]="formDescription" class="md-textarea form-control" mdbInput></textarea>
+                    <label for="form-description">Description</label>
+                    <mdb-error
+                            *ngIf="formDescription.invalid && (formDescription.dirty || formDescription.touched)">
+                        Input invalid
+                    </mdb-error>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button (click)="submit()" mdbBtn color="default" class="waves-light" mdbWavesEffect>Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

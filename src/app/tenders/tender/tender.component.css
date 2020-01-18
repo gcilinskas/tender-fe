@@ -1,0 +1,9 @@
+ul {
+    list-style-type:none;
+    text-decoration: none;
+}
+
+.tender{
+    margin:40px;
+    transition: all .3s;
+}
