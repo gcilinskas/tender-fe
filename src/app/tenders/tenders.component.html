@@ -1,6 +1,6 @@
 <div style="height: 20vh">
     <a routerLink="/"  mdbBtn color="black" outline="true" mdbWavesEffect class="wow fadeInDown" data-wow-delay="0.4s">Back</a>
-    <app-tender-modal  (tenderUpdate)="getTenderUpdate($event)" [action]="action" [tender]="tender" [tenders]="tenders"></app-tender-modal>
+    <app-tender-create (tenderUpdate)="getTenderUpdate($event)"></app-tender-create>
     <div class="flex-center flex-column">
         <h1 class="animated fadeIn mb-4">Tenders List</h1>
     </div>
@@ -27,7 +27,7 @@
 <div *ngIf="loading" style="height: 20vh">
     <div data-wow-delay="0.4s" class="flex-center flex-column">
         <div class="spinner-border text-dark" role="status">
-            <span class="sr-only">Loading...</span>
+            <span class="sr-only"></span>
         </div>
     </div>
 </div>

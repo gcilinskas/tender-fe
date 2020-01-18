@@ -15,7 +15,8 @@ import {TenderService} from './tenders/tender.service';
 import {TenderComponent} from './tenders/tender/tender.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {NgxSpinnerModule} from 'ngx-spinner';
-import {TenderModalComponent} from './tenders/tender-modal/tender-modal.component';
+import {TenderUpdateComponent} from './tenders/tender-update/tender-update.component';
+import {TenderCreateComponent} from './tenders/tender-create/tender-create.component';
 
 const appRoutes: Routes = [
   { path: 'tenders', component: TendersComponent },
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
         AppComponent,
         TendersComponent,
         TenderComponent,
-        TenderModalComponent,
+        TenderUpdateComponent,
+        TenderCreateComponent,
         Landing,
     ],
     imports: [

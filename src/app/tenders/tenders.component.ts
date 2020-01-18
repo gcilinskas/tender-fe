@@ -1,7 +1,6 @@
-import {Component, OnDestroy, OnInit,} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TenderService} from './tender.service';
 import {TenderInterface} from '../core/models/tender.model';
-import {ApiService} from '../api.service';
 
 @Component({
     selector: 'app-tenders',
@@ -11,7 +10,6 @@ import {ApiService} from '../api.service';
 
 export class TendersComponent implements OnInit {
     tenders: TenderInterface[];
-    tender: TenderInterface;
     loading: boolean;
     page;
     action = 'New';
@@ -19,7 +17,6 @@ export class TendersComponent implements OnInit {
     constructor(
         private tenderService: TenderService
     ) {
-        this.tender = this.tenderService.newObject();
     }
 
     ngOnInit(): void {
@@ -48,10 +45,13 @@ export class TendersComponent implements OnInit {
 
     getRemovedTender(id) {
         this.tenders = this.tenders.filter(tender => tender.id !== id);
+
+        if (!this.tenders.length) {
+            this.getTenders();
+        }
     }
 
-    getTenderUpdate(tenders) {
-        const array = [this.tender];
-        this.tenders = array.concat(this.tenders);
+    getTenderUpdate(tender) {
+        this.tenders = [tender].concat(this.tenders);
     }
 }

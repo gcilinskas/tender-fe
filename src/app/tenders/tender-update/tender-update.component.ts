@@ -1,28 +1,19 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {TenderInterface} from '../../core/models/tender.model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TenderService} from '../tender.service';
 import {ToastrService} from 'ngx-toastr';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-    selector: 'app-tender-modal',
-    templateUrl: './tender-modal.component.html',
-    styleUrls: ['./tender-modal.component.css']
+    selector: 'app-tender-update',
+    templateUrl: './tender-update.component.html',
 })
 
-export class TenderModalComponent implements OnInit {
+export class TenderUpdateComponent {
     @Input() tender: TenderInterface;
     @Input() tenders: TenderInterface[];
-    @ViewChild('frame', { static: true }) private frame;
+    @ViewChild('frame', {static: true}) private frame;
     validatingForm: FormGroup;
-    @Input() action = 'Update';
     @Output() tenderUpdate = new EventEmitter<TenderInterface[]>();
 
     constructor(
@@ -71,7 +62,7 @@ export class TenderModalComponent implements OnInit {
                 this.toastrService.success('Tender updated successfully!');
                 this.frame.hide();
                 this.tender.updatedAtTimestamp = data.data.updatedAtTimestamp;
-                }, err => {
+            }, err => {
                 this.toastrService.error('Something went wrong');
             });
         } else {

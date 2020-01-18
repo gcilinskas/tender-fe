@@ -4,10 +4,10 @@
     </div>
     <div class="card-body">
         <p class="card-text">{{tender.description}}</p>
-        <a (click)="remove()" class="btn btn-primary alert">Remove</a>
+        <a (click)="remove()" class="btn btn-dark">Remove</a>
+        <app-tender-update [tender]="tender"></app-tender-update>
     </div>
-    <app-tender-modal [tender]="tender"></app-tender-modal>
-    <div class="card-footer">
-        <p>{{tender.updatedAtTimestamp * 1000 | date: 'medium' }}</p>
+    <div class="card-footer text-muted">
+        {{tender.updatedAtTimestamp * 1000 | date: 'medium' }}
     </div>
 </div>
